@@ -16,15 +16,7 @@ const MealsOverviewScreen = ({route}) => {
       <FlatList
         data={displayedMeals}
         keyExtractor={(item) => item.id}
-        renderItem={(itemData) => (
-          <MealItem
-            title={itemData.item.title}
-            imageUri={itemData.item.imageUrl}
-            duration={itemData.item.duration}
-            complexity={itemData.item.complexity}
-            affordability={itemData.item.affordability}
-          />
-        )}
+        renderItem={(itemData) => <MealItem mealData={itemData.item} />}
       />
     </View>
   );

@@ -5,8 +5,9 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
 
-import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
+import MealDetailScreen from "./screens/MealDetailScreen";
+import CategoriesDrawer from "./navigators/CategoriesDrawer";
 import {CATEGORIES} from "./data/dummy-data";
 
 export default function App() {
@@ -30,10 +31,10 @@ export default function App() {
           }}
         >
           <Stack.Screen
-            name="Categories"
-            component={CategoriesScreen}
+            name="Drawer"
+            component={CategoriesDrawer}
             options={{
-              title: "All Categories",
+              headerShown: false,
             }}
           />
           <Stack.Screen
@@ -45,6 +46,14 @@ export default function App() {
                 (category) => category.id === categoryId
               ).title;
               return {title: categoryTitle, headerTintColor: "#fff"};
+            }}
+          />
+          <Stack.Screen
+            name="MealDetail"
+            component={MealDetailScreen}
+            options={({route}) => {
+              const {title} = route.params;
+              return {title, headerTintColor: "#fff"};
             }}
           />
         </Stack.Navigator>
